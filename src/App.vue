@@ -53,9 +53,10 @@
 
 <template>
   <main>
-    <form @submit.prevent="searchAnime">
+    <div class="container">
+      <form class="searchForm" @submit.prevent="searchAnime">
       <input type="text" placeholder="Search anime..." v-model="query">
-      <button type="submit">Search</button>
+      <button type="submit" class="btn">Search</button>
     </form>
 
     <div class="searched" v-if="animeSearchList.length > 0">
@@ -72,17 +73,120 @@
 
     <div class="animeList" v-if="animeList.length > 0">
         <h2>Anime</h2>
-        <div class="anime" v-for="anime in animeList" :key="anime.id">
+        <div class="anime" v-for="anime in sortedAnimeList" :key="anime.id">
           <img :src="anime.image" />
           <h3>{{ anime.title }}</h3>
+          <div class="flex-1"></div>
           <p class="episodes">{{ anime.watched }} / {{ anime.episodes }}</p>
           <button class="btn" @click="increaseEp(anime)">+</button>
           <button class="btn" @click="decreaseEp(anime)">-</button>
         </div>
       </div>
+    </div> 
   </main>
 </template>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.flex-1 {
+  display: block;
+  flex: 1 1 0%;
+}
+.container{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.searchForm{
+  display: flex;
+  max-width: 400px;
+  margin: auto;
+}
+
+.searchForm input {
+  border: none;
+  background-color: rgb(214, 214, 214);
+  padding-left: 4px;
+  padding-right: 4px;
+  width: 500px;
+  height: 30px;
+  margin: auto;
+}
+
+.searchForm input:focus {
+  outline: none;
+  background-color: rgb(201, 201, 201);
+
+}
+.searched{
+  border: 1px solid #000;
+  max-height: 800px;
+  overflow-y: scroll;
+  padding: 5px;
+  background-color: rgb(201, 201, 201);
+}
+.result{
+  display: flex;
+  margin-top: 10px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 3px;
+  background-color: #fff;
+}
+.result img {
+  height: 100px;
+  width: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.about{
+
+}
+.anime__title{
+
+}
+.anime__episodes{
+
+}
+.anime__synopsis{
+
+}
+.btn{
+  border: none;
+  display: block;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: 6px;
+}
+.animeList{
+
+}
+
+.anime{
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  background-color: rgb(214, 214, 214);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.anime img {
+  height: 100px;
+  width: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  
+}
+
+.episodes{
+
+}
 
 </style>
