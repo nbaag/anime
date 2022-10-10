@@ -35,6 +35,11 @@
     localStorage.setItem('animeList', JSON.stringify(animeList.value))
   }
 
+  const deleteAnime = (anime) => {
+    animeList.value = animeList.value.filter((i) => i !== anime)
+    localStorage.setItem('animeList', JSON.stringify(animeList.value))
+  }
+
   const increaseEp = (anime) => {
     anime.watched++
     console.log(anime.watched)
@@ -59,7 +64,7 @@
       <button type="submit" class="btn">Search</button>
     </form>
 
-    <div class="searched" v-if="animeSearchList.length > 0">
+    <div class="searched" v-if="animeSearchList.length > 0 && query !== ''">
       <div class="result" v-for="anime in animeSearchList" :key="anime.mal_id">
         <img :src="anime.images.jpg.image_url" />
         <div class="about">
@@ -76,6 +81,7 @@
         <div class="anime" v-for="anime in sortedAnimeList" :key="anime.id">
           <img :src="anime.image" />
           <h3>{{ anime.title }}</h3>
+          <buttun class="btn" @click="deleteAnime(anime)">delete</buttun>
           <div class="flex-1"></div>
           <p class="episodes">{{ anime.watched }} / {{ anime.episodes }}</p>
           <button class="btn" @click="increaseEp(anime)">+</button>
@@ -86,11 +92,15 @@
   </main>
 </template>
 
-<style scoped>
+<style >
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body {
+  padding: 10px;
+  background-color: rgb(108, 245, 238);
 }
 .flex-1 {
   display: block;
@@ -109,7 +119,7 @@
 
 .searchForm input {
   border: none;
-  background-color: rgb(214, 214, 214);
+  background-color: rgb(238, 169, 215);
   padding-left: 4px;
   padding-right: 4px;
   width: 500px;
@@ -124,7 +134,7 @@
 }
 .searched{
   border: 1px solid #000;
-  max-height: 800px;
+  max-height: 640px;
   overflow-y: scroll;
   padding: 5px;
   background-color: rgb(201, 201, 201);
@@ -163,16 +173,22 @@
   font-weight: bold;
   text-transform: uppercase;
   margin-left: 6px;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  background-color: rgb(230, 127, 150);
 }
 .animeList{
 
 }
 
 .anime{
+  box-shadow: 2px 2px 20px #000;
   display: flex;
   align-items: center;
   margin-top: 20px;
-  background-color: rgb(214, 214, 214);
+  background-color: rgb(238, 169, 215);
   padding: 5px;
   border-radius: 10px;
 }
@@ -182,7 +198,7 @@
   width: 90px;
   object-fit: cover;
   border-radius: 10px;
-  
+  margin-right: 5px;
 }
 
 .episodes{
