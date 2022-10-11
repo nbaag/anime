@@ -41,14 +41,21 @@
   }
 
   const increaseEp = (anime) => {
-    anime.watched++
-    console.log(anime.watched)
-    localStorage.setItem('animeList', JSON.stringify(animeList.value))
+    if (anime.watched < anime.episodes) {
+      anime.watched++
+      localStorage.setItem('animeList', JSON.stringify(animeList.value))
+    } else if (anime.watched >= anime.episodes) {
+      alert('max')
+    } 
   }
 
   const decreaseEp = (anime) => {
-    anime.watched--
-    localStorage.setItem('animeList', JSON.stringify(animeList.value))
+    if (anime.watched > 0) {
+      anime.watched--
+      localStorage.setItem('animeList', JSON.stringify(animeList.value))
+    } else if (anime.watched <= 0) {
+      alert('min')
+    } 
   }
 
   onMounted(() => {
@@ -81,7 +88,7 @@
         <div class="anime" v-for="anime in sortedAnimeList" :key="anime.id">
           <img :src="anime.image" />
           <h3>{{ anime.title }}</h3>
-          <buttun class="btn" @click="deleteAnime(anime)">delete</buttun>
+          <button class="btn" @click="deleteAnime(anime)">delete</button>
           <div class="flex-1"></div>
           <p class="episodes">{{ anime.watched }} / {{ anime.episodes }}</p>
           <button class="btn" @click="increaseEp(anime)">+</button>
@@ -101,6 +108,7 @@
 body {
   padding: 10px;
   background-color: rgb(108, 245, 238);
+  font-family: 'Fredoka One';
 }
 .flex-1 {
   display: block;
@@ -129,7 +137,7 @@ body {
 
 .searchForm input:focus {
   outline: none;
-  background-color: rgb(201, 201, 201);
+  background-color: rgb(252, 146, 211);
 
 }
 .searched{
@@ -166,6 +174,7 @@ body {
 
 }
 .btn{
+  background: none;
   border: none;
   display: block;
   cursor: pointer;
@@ -174,12 +183,14 @@ body {
   text-transform: uppercase;
   margin-left: 6px;
   transition: 0.5s;
+  font-family: 'Fredoka One';
 }
 
 .btn:hover {
   background-color: rgb(230, 127, 150);
 }
-.animeList{
+.animeList h2{
+  font-size: 30px;
 
 }
 
@@ -191,6 +202,10 @@ body {
   background-color: rgb(238, 169, 215);
   padding: 5px;
   border-radius: 10px;
+}
+
+.anime h3 {
+  font-size: 25px;
 }
 
 .anime img {
