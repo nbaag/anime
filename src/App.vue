@@ -89,7 +89,7 @@
           <img :src="anime.image" />
           <h3>{{ anime.title }}</h3>
           <button class="btn" @click="deleteAnime(anime)">delete</button>
-          <div class="flex-1"></div>
+          <!-- <div class="flex-1"></div> -->
           <p class="episodes">{{ anime.watched }} / {{ anime.episodes }}</p>
           <button class="btn" @click="increaseEp(anime)">+</button>
           <button class="btn" @click="decreaseEp(anime)">-</button>
@@ -99,21 +99,24 @@
   </main>
 </template>
 
-<style >
+<style lang="scss">
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   padding: 10px;
   background-color: rgb(108, 245, 238);
   font-family: 'Fredoka One';
 }
-.flex-1 {
-  display: block;
-  flex: 1 1 0%;
-}
+
+// .flex-1 {
+//   display: block;
+//   flex: 1 1 0%;
+// }
+
 .container{
   max-width: 1100px;
   margin: 0 auto;
@@ -123,23 +126,23 @@ body {
   display: flex;
   max-width: 400px;
   margin: auto;
+
+  input {
+    border: none;
+    background-color: rgb(238, 169, 215);
+    padding-left: 4px;
+    padding-right: 4px;
+    width: 500px;
+    height: 30px;
+    margin: auto;
+
+    &:focus {
+      outline: none;
+      background-color: rgb(252, 146, 211);
+    }
+  }
 }
 
-.searchForm input {
-  border: none;
-  background-color: rgb(238, 169, 215);
-  padding-left: 4px;
-  padding-right: 4px;
-  width: 500px;
-  height: 30px;
-  margin: auto;
-}
-
-.searchForm input:focus {
-  outline: none;
-  background-color: rgb(252, 146, 211);
-
-}
 .searched{
   border: 1px solid #000;
   max-height: 640px;
@@ -147,6 +150,7 @@ body {
   padding: 5px;
   background-color: rgb(201, 201, 201);
 }
+
 .result{
   display: flex;
   margin-top: 10px;
@@ -154,70 +158,61 @@ body {
   border-radius: 10px;
   padding: 3px;
   background-color: #fff;
-}
-.result img {
-  height: 100px;
-  width: 90px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-.about{
 
+  img {
+    height: 100px;
+    width: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
 }
-.anime__title{
 
-}
-.anime__episodes{
-
-}
-.anime__synopsis{
-
-}
 .btn{
   background: none;
   border: none;
-  display: block;
+  display: inline-block;
   cursor: pointer;
   padding: 5px 10px;
   font-weight: bold;
   text-transform: uppercase;
-  margin-left: 6px;
+  // margin-left: 6px;
   transition: 0.5s;
   font-family: 'Fredoka One';
+
+  &:hover {
+    background-color: rgb(230, 127, 150);
+  }
 }
 
-.btn:hover {
-  background-color: rgb(230, 127, 150);
-}
-.animeList h2{
-  font-size: 30px;
+.animeList {
 
-}
+  h2{
+    font-size: 30px;
+  }
+} 
 
 .anime{
   box-shadow: 2px 2px 20px #000;
-  display: flex;
-  align-items: center;
+  // display: flex;
+  // align-items: center;
   margin-top: 20px;
   background-color: rgb(238, 169, 215);
   padding: 5px;
   border-radius: 10px;
+  max-width: 700px;
+  margin: 10px auto;
+
+  h3 {
+    font-size: 25px;
+  }
+
+  img {
+    height: 100px;
+    width: 90px;
+    float: left;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 5px;
+  }
 }
-
-.anime h3 {
-  font-size: 25px;
-}
-
-.anime img {
-  height: 100px;
-  width: 90px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-right: 5px;
-}
-
-.episodes{
-
-}
-
 </style>
