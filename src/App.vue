@@ -74,6 +74,7 @@
     <div class="searched" v-if="animeSearchList.length > 0 && query !== ''">
       <div class="result" v-for="anime in animeSearchList" :key="anime.mal_id">
         <img :src="anime.images.jpg.image_url" />
+
         <div class="about">
           <h1 class="anime__title">{{ anime.title }}</h1>
           <p class="anime__episodes">{{ anime.episodes }}</p>
@@ -87,12 +88,17 @@
         <h2>Anime</h2>
         <div class="anime" v-for="anime in sortedAnimeList" :key="anime.id">
           <img :src="anime.image" />
-          <h3>{{ anime.title }}</h3>
-          <button class="btn" @click="deleteAnime(anime)">delete</button>
-          <!-- <div class="flex-1"></div> -->
-          <p class="episodes">{{ anime.watched }} / {{ anime.episodes }}</p>
-          <button class="btn" @click="increaseEp(anime)">+</button>
-          <button class="btn" @click="decreaseEp(anime)">-</button>
+
+          <div class="title">
+            <h3>{{ anime.title }}</h3>
+            <button class="btn" @click="deleteAnime(anime)">delete</button>
+          </div>
+
+          <div class="ep">
+            <p class="episodes">{{ anime.watched }} / {{ anime.episodes }}</p>
+            <button class="btn" @click="increaseEp(anime)">+</button>
+            <button class="btn" @click="decreaseEp(anime)">-</button>
+          </div>     
         </div>
       </div>
     </div> 
@@ -111,11 +117,6 @@ body {
   background-color: rgb(108, 245, 238);
   font-family: 'Fredoka One';
 }
-
-// .flex-1 {
-//   display: block;
-//   flex: 1 1 0%;
-// }
 
 .container{
   max-width: 1100px;
@@ -175,7 +176,6 @@ body {
   padding: 5px 10px;
   font-weight: bold;
   text-transform: uppercase;
-  // margin-left: 6px;
   transition: 0.5s;
   font-family: 'Fredoka One';
 
@@ -193,12 +193,14 @@ body {
 
 .anime{
   box-shadow: 2px 2px 20px #000;
+  position: relative;
   // display: flex;
   // align-items: center;
   margin-top: 20px;
   background-color: rgb(238, 169, 215);
   padding: 5px;
   border-radius: 10px;
+  min-height: 110px;
   max-width: 700px;
   margin: 10px auto;
 
@@ -215,4 +217,17 @@ body {
     margin-right: 5px;
   }
 }
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ep {
+  position: absolute;
+  display: flex;
+  left: 110px;
+  bottom: 0;
+}
+
 </style>
