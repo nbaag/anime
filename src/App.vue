@@ -194,15 +194,13 @@ body {
 .anime{
   box-shadow: 2px 2px 20px #000;
   position: relative;
-  // display: flex;
-  // align-items: center;
   margin-top: 20px;
   background-color: rgb(238, 169, 215);
   padding: 5px;
   border-radius: 10px;
   min-height: 110px;
   max-width: 700px;
-  margin: 10px auto;
+  margin: 20px auto;
 
   h3 {
     font-size: 25px;
@@ -222,12 +220,19 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.episodes {
+  margin: auto;
+  font-size: 20px;
+}
 
 .ep {
   position: absolute;
   display: flex;
-  left: 110px;
-  bottom: 0;
+  left: 100px;
+  bottom: 10px;
+  .btn {
+    font-size: 20px;
+  }
 }
 
 </style>
