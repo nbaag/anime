@@ -36,4 +36,22 @@ const decreaseEp = (anime) => {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+.episodes {
+  margin: auto;
+  font-size: 20px;
+}
+.ep {
+  position: absolute;
+  display: flex;
+  left: 100px;
+  bottom: 10px;
+  .btn {
+    font-size: 20px;
+  }
+}
+</style>

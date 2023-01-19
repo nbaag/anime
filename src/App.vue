@@ -60,10 +60,10 @@ onMounted(() => {
 
           <div class="about">
             <h1 class="anime__title">{{ anime.title }}</h1>
-            <p class="anime__episodes">{{ anime.episodes }}</p>
-            <p class="anime__synopsis" v-if="anime.synopsis">
+            <p class="anime__episodes">Episodes: {{ anime.episodes }}</p>
+            <!-- <p class="anime__synopsis" v-if="anime.synopsis">
               {{ anime.synopsis.slice(0, 100) }}...
-            </p>
+            </p> -->
             <button @click="addAnime(anime)" class="btn">Add</button>
           </div>
         </div>
@@ -118,8 +118,11 @@ body {
 }
 
 .searched {
+  margin: 0 auto;
   border: 1px solid #000;
+  border-radius: 10px;
   max-height: 640px;
+  max-width: 900px;
   overflow-y: scroll;
   padding: 5px;
   background-color: rgb(201, 201, 201);
@@ -139,6 +142,7 @@ body {
   background-color: #fff;
 
   img {
+    margin-right: 10px;
     height: 100px;
     width: 90px;
     object-fit: cover;
@@ -154,7 +158,7 @@ body {
   padding: 5px 10px;
   font-weight: bold;
   text-transform: uppercase;
-  transition: 0.5s;
+  transition: 0.2s;
   font-family: "Fredoka One";
 
   &:hover {
@@ -190,25 +194,6 @@ body {
     object-fit: cover;
     border-radius: 10px;
     margin-right: 5px;
-  }
-}
-
-.title {
-  display: flex;
-  justify-content: space-between;
-}
-.episodes {
-  margin: auto;
-  font-size: 20px;
-}
-
-.ep {
-  position: absolute;
-  display: flex;
-  left: 100px;
-  bottom: 10px;
-  .btn {
-    font-size: 20px;
   }
 }
 </style>
